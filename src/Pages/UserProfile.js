@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.css';
@@ -316,4 +317,200 @@ const UserProfile = () => {
   );
 };
 
+=======
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './UserProfile.css';
+
+const UserProfile = () => {
+  // 用户数据状态
+  const [userData, setUserData] = useState({
+    username: 'PT_User',
+    uploaded: '41.832 TB',
+    downloaded: '4.171 TB',
+    ratio: '10.03',
+    bonusPoints: '157862',
+    seedingCount: 0,
+    seedingSize: '0 KB',
+    joinTime: '93周',
+    userClass: 'Nexus Master',
+    lastUpdate: '2019-09-19',
+    piv: '83068',
+    activeDays: '7天',
+    medals: '46枚',
+    onlineHours: '369小时',
+    avatar: 'https://via.placeholder.com/80'
+  });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [tempUsername, setTempUsername] = useState(userData.username);
+  const [tempAvatar, setTempAvatar] = useState(userData.avatar);
+  const navigate = useNavigate();
+
+  const handleSeedDownload = () => {
+    navigate('/seed');
+  };
+
+  const handleEditProfile = () => {
+    setIsEditing(true);
+    setTempUsername(userData.username);
+    setTempAvatar(userData.avatar);
+  };
+
+  const handleSaveProfile = () => {
+    setUserData({
+      ...userData,
+      username: tempUsername,
+      avatar: tempAvatar
+    });
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setTempAvatar(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return (
+    <div className="user-profile-container">
+      {/* 侧边栏 */}
+      <div className="sidebar">
+        <div className="user-basic-info">
+          <div className="avatar-container">
+            <img src={isEditing ? tempAvatar : userData.avatar} alt="用户头像" className="user-avatar" />
+            {isEditing ? (
+              <div className="avatar-edit-controls">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleAvatarChange}
+                  style={{ display: 'none' }}
+                  id="avatar-upload"
+                />
+                <label htmlFor="avatar-upload" className="edit-avatar-btn">
+                  更换头像
+                </label>
+              </div>
+            ) : (
+              <button className="edit-profile-btn" onClick={handleEditProfile}>
+                编辑资料
+              </button>
+            )}
+            
+            {isEditing ? (
+              <input
+                type="text"
+                value={tempUsername}
+                onChange={(e) => setTempUsername(e.target.value)}
+                className="username-edit-input"
+              />
+            ) : (
+              <div className="username">{userData.username}</div>
+            )}
+            
+            <div className="user-class">{userData.userClass}</div>
+          </div>
+          
+          <div className="quick-stats">
+            <div className="stat-item">
+              <span className="stat-label">PIV</span>
+              <span className="stat-value">{userData.piv}</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">活跃</span>
+              <span className="stat-value">{userData.activeDays}</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">勋章</span>
+              <span className="stat-value">{userData.medals}</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-label">在线</span>
+              <span className="stat-value">{userData.onlineHours}</span>
+            </div>
+          </div>
+
+          {isEditing && (
+            <div className="edit-controls">
+              <button className="save-btn" onClick={handleSaveProfile}>保存</button>
+              <button className="cancel-btn" onClick={handleCancelEdit}>取消</button>
+            </div>
+          )}
+        </div>
+
+        <nav className="side-menu">
+          <div className="menu-title">功能导航</div>
+          <button className="menu-item" onClick={() => navigate('/sale')}>浏览器</button>
+          <button className="menu-item">交流区</button>
+          <button className="menu-item">风云榜</button>
+          <button className="menu-item active">个人数据</button>
+          <button className="menu-item">聚合搜索</button>
+          <button className="menu-item">数据统计</button>
+          <button className="menu-item">影视瀑布</button>
+          <button className="menu-item">关于我们</button>
+          <button className="menu-item">设置</button>
+        </nav>
+
+        <div className="welcome-message">
+          尊敬的{userData.username}会员<br />
+          欢迎您使用本软件！
+        </div>
+      </div>
+
+      {/* 主内容区 */}
+      <div className="main-content">
+        <div className="content-header">
+          <h2>个人数据</h2>
+          <button className="refresh-btn">F5 刷新</button>
+        </div>
+
+        <div className="data-table">
+          <div className="table-header">
+            <div className="header-item">用户名</div>
+            <div className="header-item">上传量</div>
+            <div className="header-item">下载量</div>
+            <div className="header-item">分享率</div>
+            <div className="header-item">魔力值</div>
+            <div className="header-item">做种数</div>
+            <div className="header-item">做种体积</div>
+            <div className="header-item">入站</div>
+            <div className="header-item">当前等级</div>
+            <div className="header-item">更新日期</div>
+          </div>
+
+          <div className="table-row">
+            <div className="row-item">{userData.username}</div>
+            <div className="row-item">{userData.uploaded}</div>
+            <div className="row-item">{userData.downloaded}</div>
+            <div className="row-item">{userData.ratio}</div>
+            <div className="row-item">{userData.bonusPoints}</div>
+            <div className="row-item">{userData.seedingCount}</div>
+            <div className="row-item">{userData.seedingSize}</div>
+            <div className="row-item">{userData.joinTime}</div>
+            <div className="row-item">{userData.userClass}</div>
+            <div className="row-item">{userData.lastUpdate}</div>
+          </div>
+        </div>
+
+        <div className="user-actions">
+          <button className="seed-download-btn" onClick={handleSeedDownload}>
+            种子下载
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+>>>>>>> d515fb0 (第一次上传)
 export default UserProfile;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .seed-container {
   max-width: 500px;
   margin: 60px auto;
@@ -39,3 +40,78 @@
 .seed-buttons button:hover {
   background-color: #303f9f;
 }
+=======
+/* 容器整体样式 */
+.seed-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* 标题样式 */
+.seed-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+/* 表单分组 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* 标签文字 */
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+/* 下拉框和文件输入样式 */
+.form-group select,
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+.form-group select:focus,
+.form-group input[type="file"]:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* 按钮容器样式 */
+.form-actions {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* 上传按钮样式 */
+.upload-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-btn:hover {
+  background-color: #45a049;
+}
+>>>>>>> d515fb0 (第一次上传)

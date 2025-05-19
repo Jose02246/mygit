@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .login-container {
     max-width: 600px;
     margin: 0 auto;
@@ -126,4 +127,134 @@
   .language-selector select {
     padding: 5px;
     border-radius: 4px;
+=======
+.login-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .notice {
+    background-color: #fff8e1;
+    padding: 10px;
+    border-left: 4px solid #ffc107;
+    margin-bottom: 20px;
+  }
+  
+  .notice p {
+    margin: 5px 0;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="password"],
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .advanced-options {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+  }
+  
+  .advanced-options h4 {
+    margin-top: 0;
+  }
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox input {
+    margin-right: 10px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .login-btn, .reset-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-btn {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .reset-btn {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .new-btn {
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.new-btn:hover {
+  background-color: #1976D2;
+}
+
+  
+  .appeal-channel {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+  }
+  
+  .links {
+    margin: 20px 0;
+  }
+  
+  .links a {
+    color: #2196F3;
+    text-decoration: none;
+  }
+  
+  .links a:hover {
+    text-decoration: underline;
+  }
+  
+  .language-selector {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .language-selector select {
+    padding: 5px;
+    border-radius: 4px;
+>>>>>>> d515fb0 (第一次上传)
   }
