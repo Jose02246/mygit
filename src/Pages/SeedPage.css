@@ -1,46 +1,3 @@
-<<<<<<< HEAD
-.seed-container {
-  max-width: 500px;
-  margin: 60px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.seed-container h2 {
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.seed-container p {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 30px;
-}
-
-.seed-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.seed-buttons button {
-  padding: 12px 20px;
-  font-size: 16px;
-  background-color: #3f51b5;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.seed-buttons button:hover {
-  background-color: #303f9f;
-}
-=======
 /* 容器整体样式 */
 .seed-container {
   max-width: 600px;
@@ -114,4 +71,3 @@
 .upload-btn:hover {
   background-color: #45a049;
 }
->>>>>>> d515fb0 (第一次上传)

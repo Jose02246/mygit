@@ -1,260 +1,158 @@
-<<<<<<< HEAD
-.login-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .notice {
-    background-color: #fff8e1;
-    padding: 10px;
-    border-left: 4px solid #ffc107;
-    margin-bottom: 20px;
-  }
-  
-  .notice p {
-    margin: 5px 0;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="password"],
-  .form-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .advanced-options {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-  }
-  
-  .advanced-options h4 {
-    margin-top: 0;
-  }
-  
-  .checkbox {
-    display: flex;
-    align-items: center;
-  }
-  
-  .checkbox input {
-    margin-right: 10px;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-  }
-  
-  .login-btn, .reset-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .login-btn {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .reset-btn {
-    background-color: #f44336;
-    color: white;
-  }
 
-  .new-btn {
-  padding: 10px 20px;
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.85); /* 半透明白底 */
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  color: #333;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* 标题美化 */
+.login-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+/* 提示条 */
+.notice {
+  background-color: #fff8e1;
+  padding: 12px;
+  border-left: 4px solid #ffc107;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.notice p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* 表单样式 */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #2196F3;
+  outline: none;
+}
+
+/* 高级选项 */
+.advanced-options {
+  margin: 25px 0;
+  padding: 15px;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.advanced-options h4 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* 复选框样式 */
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox input {
+  margin-right: 10px;
+}
+
+/* 按钮组 */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+/* 按钮样式 */
+.login-btn, .reset-btn, .new-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #43a047;
+}
+
+.reset-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.reset-btn:hover {
+  background-color: #d32f2f;
+}
+
+.new-btn {
   background-color: #2196F3;
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
+
 .new-btn:hover {
   background-color: #1976D2;
 }
 
-  
-  .appeal-channel {
-    text-align: center;
-    margin: 20px 0;
-    font-weight: bold;
-  }
-  
-  .links {
-    margin: 20px 0;
-  }
-  
-  .links a {
-    color: #2196F3;
-    text-decoration: none;
-  }
-  
-  .links a:hover {
-    text-decoration: underline;
-  }
-  
-  .language-selector {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  .language-selector select {
-    padding: 5px;
-    border-radius: 4px;
-=======
-.login-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .notice {
-    background-color: #fff8e1;
-    padding: 10px;
-    border-left: 4px solid #ffc107;
-    margin-bottom: 20px;
-  }
-  
-  .notice p {
-    margin: 5px 0;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="password"],
-  .form-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .advanced-options {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-  }
-  
-  .advanced-options h4 {
-    margin-top: 0;
-  }
-  
-  .checkbox {
-    display: flex;
-    align-items: center;
-  }
-  
-  .checkbox input {
-    margin-right: 10px;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-  }
-  
-  .login-btn, .reset-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .login-btn {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .reset-btn {
-    background-color: #f44336;
-    color: white;
-  }
-
-  .new-btn {
-  padding: 10px 20px;
-  background-color: #2196F3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.new-btn:hover {
-  background-color: #1976D2;
+/* 下方链接 */
+.links {
+  margin: 20px 0;
+  text-align: center;
 }
 
-  
-  .appeal-channel {
-    text-align: center;
-    margin: 20px 0;
-    font-weight: bold;
-  }
-  
-  .links {
-    margin: 20px 0;
-  }
-  
-  .links a {
-    color: #2196F3;
-    text-decoration: none;
-  }
-  
-  .links a:hover {
-    text-decoration: underline;
-  }
-  
-  .language-selector {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  .language-selector select {
-    padding: 5px;
-    border-radius: 4px;
->>>>>>> d515fb0 (第一次上传)
-  }
+.links a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* 语言选择器 */
+.language-selector {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.language-selector select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
