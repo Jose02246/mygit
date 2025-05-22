@@ -5,27 +5,32 @@ import './UserProfile.css';
 const UserProfile = () => {
     // 用户数据状态
   const [userData, setUserData] = useState({
-    username: 'PT_User',
-    uploaded: '41.832 TB',
-    downloaded: '4.171 TB',
-    ratio: '10.03',
-    bonusPoints: '157862',
-    seedingCount: 0,
-    seedingSize: '0 KB',
-    joinTime: '93周',
-    userClass: 'Nexus Master',
-    lastUpdate: '2025-05-16',
-    piv: '0',
-    activeDays: '0天',
-    medals: '0枚',
-    onlineHours: '0小时',
-    avatar: 'https://via.placeholder.com/80'
-  });
+  username: 'zzz',
+  email: '0987432@qq.com',
+  customTitle: '测试用户',
+  signature: '这个用户很懒，还没有个性签名',
+  downloaded: '26.67 MB',
+  uploaded: '0 B',
+  realDownloaded: '26.67 MB',
+  realUploaded: '0 B',
+  score: '317.79',
+  inviteSlot: 0,
+  seedingTime: '103天 10小时',
+  downloadBandwidth: '100mbps',
+  uploadBandwidth: '100mbps',
+  createdAt: '2023-03-03',
+  piv: '0',
+  activeDays: '0天',
+  medals: '0枚',
+  onlineHours: '0小时',
+  avatar: 'https://www.baidu.com/favicon.ico'
+});
 
 
   const [isEditing, setIsEditing] = useState(false);
   const [tempUsername, setTempUsername] = useState(userData.username);
   const [tempAvatar, setTempAvatar] = useState(userData.avatar);
+  const [activeMenuItem, setActiveMenuItem] = useState('personal'); // 新增状态跟踪激活菜单项
   
   // 签到相关状态
   const [checkedDays, setCheckedDays] = useState([1, 2, 3, 16]); // 示例已签到日期
@@ -38,7 +43,13 @@ const UserProfile = () => {
 
   const handlePublishClick = () => {
     navigate('/seed');
+    setActiveMenuItem('publish'); // 设置激活状态
   };
+
+const handleNavigation = (path, menuItem) => {
+        navigate(path);
+        setActiveMenuItem(menuItem); // 设置激活状态
+    };
 
   const handleEditProfile = () => {
     setIsEditing(true);
@@ -123,9 +134,9 @@ const UserProfile = () => {
       [25, 26, 27, 28, 29, 30, 31]
     ]
   };
-
   // 获取今天是几号
   const today = new Date().getDate();
+  
 
   return (
     <div className="user-profile-container">
@@ -164,7 +175,19 @@ const UserProfile = () => {
               <div className="username">{userData.username}</div>
             )}
             
-            <div className="user-class">{userData.userClass}</div>
+            <span style={{
+  display: 'inline-block',
+  color: '#00FFFF',
+  fontSize: '12px',
+  fontWeight: 'bold',
+  textShadow: '0 0 4px #00FFFF, 0 0 8px #00FFFF',
+  padding: '2px 6px',
+  border: '1px solid rgba(0,255,255,0.3)',
+  borderRadius: '4px',
+  background: 'rgba(0,100,100,0.2)'
+}}>
+  Nexus Master
+</span>
           </div>
           
           <div className="quick-stats">
@@ -196,13 +219,43 @@ const UserProfile = () => {
 
         <nav className="side-menu">
           <div className="menu-title">功能导航</div>
-          <button className="menu-item active">首页</button>
-          <button className="menu-item">论坛</button>
-          <button className="menu-item" onClick={() => navigate('/torrent')}>种子</button>
-          <button className="menu-item" onClick={handlePublishClick}>发布</button>
-          <button className="menu-item" onClick={() => navigate('/sale')}>积分商城</button>
-          <button className="menu-item">设置</button>
-        </nav>
+<button 
+                        className={`menu-item ${activeMenuItem === 'personal' ? 'active' : ''}`}
+                        onClick={() => setActiveMenuItem('personal')}
+                    >
+                        个人中心
+                    </button>
+                    <button 
+                        className={`menu-item ${activeMenuItem === 'forum' ? 'active' : ''}`}
+                        onClick={() => handleNavigation('/forum', 'forum')}
+                    >
+                        论坛
+                    </button>
+                    <button 
+                        className={`menu-item ${activeMenuItem === 'torrent' ? 'active' : ''}`}
+                        onClick={() => handleNavigation('/torrent', 'torrent')}
+                    >
+                        种子
+                    </button>
+                    <button 
+                        className={`menu-item ${activeMenuItem === 'publish' ? 'active' : ''}`}
+                        onClick={handlePublishClick}
+                    >
+                        发布
+                    </button>
+                    <button 
+                        className={`menu-item ${activeMenuItem === 'shop' ? 'active' : ''}`}
+                        onClick={() => handleNavigation('/points-shop', 'shop')}
+                    >
+                        积分商城
+                    </button>
+                    <button 
+                        className={`menu-item ${activeMenuItem === 'settings' ? 'active' : ''}`}
+                        onClick={() => setActiveMenuItem('settings')}
+                    >
+                        设置
+                    </button>
+                </nav>
 
         <div className="welcome-message">
           尊敬的{userData.username}会员<br />
@@ -210,43 +263,116 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* 主内容区 */}
-      <div className="main-content">
-        <div className="content-header">
-          <h2>个人数据</h2>
-          <button className="refresh-btn">F5 刷新</button>
+<div className="main-content">
+  <div className="content-header">
+    <h2>个人中心</h2>
+    <button className="refresh-btn" onClick={() => window.location.reload()}>
+      <i className="fas fa-sync-alt"></i> 刷新
+    </button>
+  </div>
+
+  {/* 用户数据概览 */}
+  <div className="dashboard-grid">
+    {/* 基本信息卡片 */}
+    <div className="dashboard-card">
+      <h3><i className="fas fa-user"></i> 基本信息</h3>
+      <div className="card-content">
+        <div className="info-row">
+          <span className="info-label">用户名:</span>
+          <span className="info-value">{userData.username || 'zzz'}</span>
         </div>
+        <div className="info-row">
+          <span className="info-label">邮箱:</span>
+          <span className="info-value">0987432@qq.com</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">称号:</span>
+          <span className="info-value">测试用户</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">签名:</span>
+          <span className="info-value">这个用户很懒，还没有个性签名</span>
+        </div>
+      </div>
+    </div>
+
+    {/* 流量统计卡片 */}
+    <div className="dashboard-card">
+      <h3><i className="fas fa-chart-line"></i> 流量统计</h3>
+      <div className="card-content">
+        <div className="info-row">
+          <span className="info-label">上传量:</span>
+          <span className="info-value">0 B</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">下载量:</span>
+          <span className="info-value">26.67 MB</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">真实上传:</span>
+          <span className="info-value">0 B</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">真实下载:</span>
+          <span className="info-value">26.67 MB</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">分享率:</span>
+          <span className="info-value">0.00</span>
+        </div>
+      </div>
+    </div>
+
+    {/* 做种统计卡片 */}
+    <div className="dashboard-card">
+      <h3><i className="fas fa-seedling"></i> 做种统计</h3>
+      <div className="card-content">
+        <div className="info-row">
+          <span className="info-label">做种时间:</span>
+          <span className="info-value">103天 10小时</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">当前做种:</span>
+          <span className="info-value">0个</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">上传带宽:</span>
+          <span className="info-value">100mbps</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">下载带宽:</span>
+          <span className="info-value">100mbps</span>
+        </div>
+      </div>
+    </div>
+
+    {/* 积分与成就卡片 */}
+    <div className="dashboard-card">
+      <h3><i className="fas fa-coins"></i> 积分与成就</h3>
+      <div className="card-content">
+        <div className="info-row">
+          <span className="info-label">魔力值:</span>
+          <span className="info-value">317.79</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">邀请名额:</span>
+          <span className="info-value">0个</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">注册时间:</span>
+          <span className="info-value">2023-03-03</span>
+        </div>
+        <div className="info-row">
+          <span className="info-label">会员等级:</span>
+          <span className="info-value">Nexus Master</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
         <div className="main-content-wrapper">
-          <div className="data-table">
-            <div className="table-header">
-              <div className="header-item">用户名</div>
-              <div className="header-item">上传量</div>
-              <div className="header-item">下载量</div>
-              <div className="header-item">分享率</div>
-              <div className="header-item">魔力值</div>
-              <div className="header-item">做种数</div>
-              <div className="header-item">做种体积</div>
-              <div className="header-item">入站</div>
-              <div className="header-item">当前等级</div>
-              <div className="header-item">更新日期</div>
-            </div>
+          
 
-            <div className="table-row">
-              <div className="row-item">{userData.username}</div>
-              <div className="row-item">{userData.uploaded}</div>
-              <div className="row-item">{userData.downloaded}</div>
-              <div className="row-item">{userData.ratio}</div>
-              <div className="row-item">{userData.bonusPoints}</div>
-              <div className="row-item">{userData.seedingCount}</div>
-              <div className="row-item">{userData.seedingSize}</div>
-              <div className="row-item">{userData.joinTime}</div>
-              <div className="row-item">{userData.userClass}</div>
-              <div className="row-item">{userData.lastUpdate}</div>
-            </div>
-          </div>
-
-        
           {/* 新签到组件 */}
           <div className="checkin-container">
             {showCheckinSuccess && (

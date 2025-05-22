@@ -1,0 +1,336 @@
+.forum-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg-forum1.jpg); 
+  background-size: cover;      
+  background-position: center; 
+  background-repeat: no-repeat; 
+  opacity: 0.9;
+  z-index: -1; 
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.forum-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.forum-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.forum-tabs {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.forum-tabs button {
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.forum-tabs button.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+/* 板块列表样式 */
+.forum-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.forum-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.forum-item:hover {
+  background-color: #f9f9f9;
+}
+
+.forum-info h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.forum-info p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.forum-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 13px;
+  color: #888;
+}
+
+/* 帖子列表样式 */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.new-post-btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.post-item {
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.post-item:hover {
+  background-color: #f9f9f9;
+}
+
+.post-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.post-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  color: #888;
+}
+
+/* 帖子详情样式 */
+.post-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-header h3 {
+  margin: 0 0 10px 0;
+}
+
+.post-content {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+/* 评论区域样式 */
+.comments-section {
+  margin-top: 30px;
+}
+
+.comments-section h4 {
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.comment-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.comment-meta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #333;
+}
+
+.comment-date {
+  color: #888;
+}
+
+.comment-content {
+  line-height: 1.5;
+}
+
+.comment-form {
+  margin-top: 20px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 100px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+
+.comment-form button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 新帖子表单样式 */
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.new-post-form h3 {
+  margin: 0 0 10px 0;
+}
+
+.new-post-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.new-post-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 200px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.form-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions button:first-child {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.form-actions button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+/* 添加以下新样式 */
+
+/* 回复按钮样式 */
+.reply-btn {
+  margin-left: 10px;
+  padding: 2px 8px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.reply-btn:hover {
+  background-color: #e0e0e0;
+}
+
+/* 回复列表样式 */
+.replies-list {
+  margin-top: 10px;
+  margin-left: 30px;
+  border-left: 2px solid #eee;
+  padding-left: 15px;
+}
+
+.reply-item {
+  padding: 10px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+
+.reply-meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.reply-author {
+  font-weight: bold;
+  color: #666;
+}
+
+.reply-date {
+  color: #999;
+}
+
+.reply-content {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* 正在回复提示 */
+.replying-to {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.replying-to button {
+  padding: 2px 8px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.replying-to button:hover {
+  background-color: #e0e0e0;
+}
