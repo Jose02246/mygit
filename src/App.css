@@ -1,0 +1,36 @@
+/* App.css */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* 移除 background-image 设置 */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* 添加默认背景样式（供非登录/注册页面使用） */
+.default-background {
+  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg2.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 新增视频背景样式 */
+.video-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-background video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}

@@ -1,0 +1,138 @@
+.seed-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg-seed.jpg); 
+  background-size: cover;      
+  background-position: center; 
+  background-repeat: no-repeat; 
+  opacity: 0.9;
+  z-index: -1; 
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.seed-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.form-section {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.form-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #444;
+  min-width: 80px;
+}
+
+.hint-text {
+  color: #888;
+  font-size: 13px;
+  flex: 1;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.description-input {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}
+
+.file-upload-btn {
+  padding: 8px 15px;
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.file-upload-btn:hover {
+  background-color: #303f9f;
+}
+
+.file-status {
+  color: #000000;
+  font-size: 14px;
+}
+
+
+.upload-info {
+  color: #888;
+  font-size: 13px;
+  margin-left: auto;
+}
+
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  padding: 10px 25px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+  .seed-container {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .upload-info {
+    margin-left: 0;
+  }
+}
