@@ -6,12 +6,20 @@
   /* 移除 background-image 设置 */
 }
 
-.main-content {
+/* 主布局样式 */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 内容区域样式 */
+.content-area {
   flex: 1;
+  margin-left: 220px; /* 与侧边栏宽度一致 */
   padding: 20px;
 }
 
-/* 添加默认背景样式（供非登录/注册页面使用） */
+
 .default-background {
   background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg2.jpg);
   background-size: cover;

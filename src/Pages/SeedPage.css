@@ -1,13 +1,14 @@
 .seed-container {
   max-width: 800px;
   margin: 40px auto;
+    width: 100%;
+  min-height: 100vh;
   padding: 30px;
-  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg-seed.jpg); 
+  background-image: url(../../public/photos/bg-seed.jpg); 
   background-size: cover;      
   background-position: center; 
   background-repeat: no-repeat; 
   opacity: 0.9;
-  z-index: -1; 
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

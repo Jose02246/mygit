@@ -1,13 +1,14 @@
 .forum-container {
   max-width: 1200px;
-  margin: 20px auto;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
   padding: 20px;
-  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg-forum1.jpg); 
-  background-size: cover;      
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-image: url(../../public/photos/bg-forum1.jpg); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   opacity: 0.9;
-  z-index: -1; 
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
