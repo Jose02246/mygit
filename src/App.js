@@ -4,6 +4,7 @@ import LoginPage from './Pages/LoginPage';
 import SeedPage from './Pages/SeedPage'; 
 import UserProfile from './Pages/UserProfile'; 
 import SalePage from './Pages/SalePage'; 
+import TorrentPage from './Pages/TorrentPage'; 
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/user" element={<UserProfile />} />
             <Route path="/seed" element={<SeedPage />} /> 
             <Route path="/sale" element={<SalePage />} />
+            <Route path="/torrent" element={<TorrentPage/>} />
 
           </Routes>
         </main>
