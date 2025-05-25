@@ -1,0 +1,138 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.login-container {
+  width: 32vw;         
+  height: auto;            /* 根据内容高度自动调整 */
+  position: fixed;         /* 固定定位 */
+  top: 50%;                /* 顶部 50% */
+  right: 2vw;                /* 靠右对齐 */
+  transform: translateY(-50%); /* 垂直居中（向上偏移自身高度的50%） */
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.148); /* 低透明度背景 */
+
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  color: #333;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.login-container h1 {
+  text-align: center;
+  color: #131313;
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-group h2 {
+  text-align: left;
+  color: #131313;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #2196F3;
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.login-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: rgb(250, 244, 244);
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #43a047;
+}
+
+.links {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.links a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+/* 针对带图标的输入容器 */
+.form-group.with-icon .input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 12px 10px 42px  !important; /* 左侧 padding 留给图标 */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  font-size: 16px;
+}
+
+.input-wrapper input:focus {
+  border-color: #2196F3;
+  outline: none;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #888;
+  pointer-events: none;
+}

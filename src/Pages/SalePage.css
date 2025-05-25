@@ -1,0 +1,58 @@
+.sale-container {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.sale-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.item-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #fdfdfd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+}
+
+.item-name {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.item-desc {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 10px;
+  min-height: 40px;
+}
+
+.item-price {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.exchange-btn {
+  background-color: wheat;
+  color: green;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer; /* 改成 pointer，表示可点击的手指形状 */
+}

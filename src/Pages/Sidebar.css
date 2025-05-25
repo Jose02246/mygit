@@ -1,0 +1,197 @@
+.sidebar {
+  width: 220px;
+  background-color: #3d5166;
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* 固定定位，不随页面滚动 */
+  height: 100vh; /* 全高 */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* 确保在最上层 */
+}
+
+.user-basic-info {
+  padding: 0 15px 20px;
+  border-bottom: 1px solid #3d5166;
+  text-align: center;
+}
+
+.avatar-container {
+  margin-bottom: 15px;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #4CAF50;
+  object-fit: cover;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+/* 编辑资料按钮样式 */
+.edit-profile-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: #34495e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.edit-profile-btn:hover {
+  background-color: #45a049;
+}
+
+/* 头像编辑区域 */
+.avatar-edit-controls {
+  margin-top: 10px;
+}
+
+.edit-avatar-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: #2196F3;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.edit-avatar-btn:hover {
+  background-color: #0b7dda;
+}
+
+/* 用户名编辑输入框 */
+.username-edit-input {
+  width: 80%;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 编辑控制按钮 */
+.edit-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.save-btn, .cancel-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* CSS */
+.user-class span {
+  display: inline-block;
+  color: #00FFFF;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0 0 4px #00FFFF, 0 0 8px #00FFFF;
+  padding: 2px 6px;
+  border: 1px solid rgba(0,255,255,0.3);
+  border-radius: 4px;
+  background: rgba(0,100,100,0.2);
+}
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.quick-stats .stat-item {
+  background-color: #34495e;
+  padding: 8px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.quick-stats .stat-label {
+  font-size: 12px;
+  color: #bdc3c7;
+  display: block;
+}
+
+.quick-stats .stat-value {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.side-menu {
+  flex: 1;
+  padding: 15px 0;
+}
+
+.menu-title {
+  padding: 8px 15px;
+  font-size: 14px;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.menu-item {
+  width: 100%;
+  padding: 10px 20px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #34495e;
+}
+
+.menu-item.active {
+  background-color: #4CAF50;
+}
+
+.welcome-message {
+  padding: 15px;
+  font-size: 13px;
+  color: #bdc3c7;
+  border-top: 1px solid #3d5166;
+  margin-top: auto;
+}
