@@ -3,7 +3,7 @@
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
-  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg2.jpg); 
+  background-image: url(../../public/photos/bg2.jpg); 
   background-size: cover;      
   background-position: center; 
   background-repeat: no-repeat; 
@@ -223,123 +223,29 @@
   flex: 1;
 }
 
-/* 签到容器 */
-.checkin-container {
-  width: 280px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg-qiandao.jpg); 
-  background-size: cover;      
-  background-position: center; 
-  background-repeat: no-repeat; 
-  opacity: 0.8;
-  border-radius: 8px;
+/* UserProfile.css 新增/修改样式 */
+.checkin-message {
+  margin-top: 10px;
   padding: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* 签到成功提示 */
-.checkin-success {
-  background: #e8f5e9;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  border-left: 4px solid #4CAF50;
-}
-
-.checkin-success h3 {
-  margin: 0 0 8px 0;
+  background-color: #e8f5e9;
   color: #2e7d32;
-  font-size: 16px;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1.6;
 }
 
-.checkin-success p {
+.checkin-message p {
   margin: 4px 0;
-  font-size: 13px;
-  color: #333;
 }
 
-/* 紧凑日历 */
-.compact-calendar {
-  margin-bottom: 12px;
-}
-
-.calendar-header h4 {
-  margin: 0 0 8px 0;
-  text-align: center;
-  font-size: 14px;
-  color: #ffffff;
-}
-
-.calendar-weekdays {
+.header-actions {
   display: flex;
-  margin-bottom: 6px;
-}
-
-.weekday {
-  flex: 1;
-  text-align: center;
-  font-size: 12px;
-  color: #ffffff;
-}
-
-.calendar-week {
-  display: flex;
-  margin-bottom: 4px;
-}
-
-.calendar-day {
-  flex: 1;
-  height: 24px;
-  display: flex;
+  gap: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s;
+  flex-wrap: wrap; /* 小屏幕时换行 */
 }
 
-.calendar-day.unchecked {
-  background: #f5f5f5;
-  color: #999;
-}
-
-.calendar-day.unchecked:hover {
-  background: #e0e0e0;
-}
-
-.calendar-day.checked {
-  background: #4CAF50;
-  color: white;
-  font-weight: bold;
-}
-
-.calendar-day.today {
-  border: 2px solid #FFC107;
-}
-
-/* 签到规则 */
-.checkin-rules {
-  font-size: 12px;
-  color: #ffffff;
-  padding-top: 8px;
-  border-top: 1px dashed #eee;
-}
-
-.checkin-rules ul {
-  margin: 0;
-  padding-left: 16px;
-}
-
-.checkin-rules li {
-  margin-bottom: 4px;
-}
-
-.checkin-rules ul ul {
-  padding-left: 20px;
-}
+/* 保持其他原有样式不变 */
 
 /* 响应式调整 */
 @media (max-width: 768px) {

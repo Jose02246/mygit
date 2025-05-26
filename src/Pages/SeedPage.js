@@ -1,120 +1,127 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SeedPage.css';
+import api from './api';
 
 const SeedPage = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedTag, setSelectedTag] = useState('');
+  const [file, setFile] = useState(null);
+
+  // 4个字段都用文本输入框，anonymous也改成字符串类型
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [description, setDescription] = useState('');
-  const [screenshot, setScreenshot] = useState(null);
-  const [remainingUploads, setRemainingUploads] = useState(5);
+  //const [anonymous, setAnonymous] = useState(''); // 原来是布尔，这里改成文本输入
+
+  useEffect(() => {
+    api.get('/category/list')
+      .then(response => setCategories(response.data))
+      .catch(error => console.error('获取种类失败', error));
+
+    api.get('/tag/list')
+      .then(response => setTags(response.data))
+      .catch(error => console.error('获取标签失败', error));
+  }, []);
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+    setFile(e.target.files[0]);
   };
 
-  const handleScreenshotChange = (e) => {
-    if (e.target.files[0]) {
-      setScreenshot(e.target.files[0]);
-      setRemainingUploads(prev => prev - 1);
+  const handleUpload = () => {
+    if (!selectedCategory || !selectedTag || !file) {
+      alert('请选择类型、标签，并选择文件');
+      return;
     }
-  };
+    if (!title.trim()) {
+      alert('请输入标题');
+      return;
+    }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // 这里处理表单提交逻辑
-    console.log({ title, subtitle, description, selectedFile, screenshot });
-    alert('种子提交成功！');
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('subtitle', subtitle);
+    formData.append('description', description);
+    //formData.append('anonymous', anonymous.trim()); // 直接传字符串
+    formData.append('category', selectedCategory);
+    formData.append('tag', selectedTag);
+    formData.append('file', file);
+
+    api.post('/torrent/upload', formData)
+      .then(() => alert('上传成功！'))
+      .catch(error => alert('上传失败: ' + error.message));
   };
 
   return (
     <div className="seed-container">
-      <h2>发布种子</h2>
-      
-      <form onSubmit={handleSubmit}>
-        {/* 种子文件上传 */}
-        <div className="form-section">
-          <div className="form-header">
-            <h3>种子文件</h3>
-            <div className="form-actions">
-              <label className="file-upload-btn">
-                选择文件
-                <input type="file" onChange={handleFileChange} style={{ display: 'none' }} />
-              </label>
-              <span className="file-status">
-                {selectedFile ? selectedFile.name : '未选择文件'}
-              </span>
-            </div>
-          </div>
-        </div>
+      <h2>种子管理中心</h2>
 
-        {/* 标题 */}
-        <div className="form-section">
-          <div className="form-header">
-            <h3>标题</h3>
-          </div>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="请输入规范标题"
-            className="form-input"
-          />
-        </div>
+      <div className="form-group">
+        <label>标题：</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="请输入标题"
+        />
+      </div>
 
-        {/* 副标题 */}
-        <div className="form-section">
-          <div className="form-header">
-            <h3>副标题</h3>
-          </div>
-          <input
-            type="text"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-            placeholder="请输入副标题"
-            className="form-input"
-          />
-        </div>
+      <div className="form-group">
+        <label>副标题：</label>
+        <input
+          type="text"
+          value={subtitle}
+          onChange={(e) => setSubtitle(e.target.value)}
+          placeholder="请输入副标题"
+        />
+      </div>
 
-        {/* 简介编辑器 */}
-        <div className="form-section">
-          <div className="form-header">
-            <h3>简介</h3>
-          </div>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="description-input"
-            placeholder="请输入详细描述..."
-          />
-        </div>
+      <div className="form-group">
+        <label>描述：</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="请输入描述"
+        />
+      </div>
 
-        {/* 截图上传 */}
-        <div className="form-section">
-          <div className="form-header">
-            <h3>截图</h3>
-            <div className="form-actions">
-              <label className="file-upload-btn">
-                选择文件
-                <input 
-                  type="file" 
-                  onChange={handleScreenshotChange} 
-                  accept="image/*"
-                  style={{ display: 'none' }} 
-                />
-              </label>
-              <span className="file-status">
-                {screenshot ? screenshot.name : '未选择文件'}
-              </span>
-            </div>
-          </div>
-        </div>
 
-        {/* 提交按钮 */}
-        <div className="form-footer">
-          <button type="submit" className="submit-btn">发布种子</button>
-        </div>
-      </form>
+      <div className="form-group">
+        <label>选择种子类型：</label>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">-- 请选择类型 --</option>
+          {categories.map(cat => (
+            <option key={cat.id} value={cat.name}>{cat.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label>选择标签：</label>
+        <select
+          value={selectedTag}
+          onChange={(e) => setSelectedTag(e.target.value)}
+        >
+          <option value="">-- 请选择标签 --</option>
+          {tags.map(tag => (
+            <option key={tag.id} value={tag.name}>{tag.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label>选择种子文件：</label>
+        <input type="file" onChange={handleFileChange} />
+      </div>
+
+      <div className="form-actions">
+        <button className="upload-btn" onClick={handleUpload}>上传种子</button>
+      </div>
     </div>
   );
 };

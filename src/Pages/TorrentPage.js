@@ -1,64 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './TorrentPage.css';
+import api from './api';
 
 const TorrentPage = () => {
   const [torrents, setTorrents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
+
+  // 页面加载时拉取所有种子和分类
   useEffect(() => {
-    // 模拟API请求
-    const fetchTorrents = async () => {
+    const fetchInitialData = async () => {
+      setLoading(true);
       try {
-        // 这里应该是实际的API请求，我们使用模拟数据
-        const mockData = {
-          totalElements: 2,
-          totalPages: 1,
-          torrents: [
-            {
-              id: 2,
-              slug: "music",
-              name: "music",
-              title: "欣田",
-              subTitle: "无",
-              size: 26737916,
-              createdAt: 1747276349080,
-              tags: ["flac", "hot"],
-              promotionPolicy: {
-                displayName: "2倍",
-                uploadRatio: 1.0,
-                downloadRatio: 1.0
-              }
-            },
-            {
-              id: 5,
-              slug: "music",
-              name: "music",
-              title: "晴天",
-              subTitle: "无",
-              size: 31511626,
-              createdAt: 1747299270808,
-              tags: ["flac"],
-              promotionPolicy: {
-                displayName: "2倍",
-                uploadRatio: 1.0,
-                downloadRatio: 1.0
-              }
-            }
-          ]
-        };
-        setTorrents(mockData.torrents);
-        setLoading(false);
+        // 拉取第一页全部种子（无筛选）
+        const response = await fetch('http://192.168.10.117:8081/api/torrent/search', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: 1 }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setTorrents(data.torrents || []);
       } catch (error) {
         console.error('获取种子数据失败:', error);
+        setTorrents([]);
+      } finally {
         setLoading(false);
       }
     };
 
-    fetchTorrents();
+    // 拉取分类列表
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get('/category/list');
+        setCategories(response.data);
+      } catch (error) {
+        console.error('获取种类失败', error);
+      }
+    };
+
+    fetchInitialData();
+    fetchCategories();
   }, []);
+
+  // 点击搜索按钮时调用，根据搜索词和类别筛选
+  const handleSearch = async () => {
+    setLoading(true);
+    try {
+      const body = {
+        page: 1,
+      };
+
+      if (searchTerm.trim() !== '') {
+        body.keyword = searchTerm.trim();
+      }
+
+      if (selectedCategory.length > 0) {
+  body.category = selectedCategory;  // 传数组
+}
+
+console.log('发送给后端的请求体:', JSON.stringify(body, null, 2));
+
+
+      const response = await fetch('http://192.168.10.117:8081/api/torrent/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setTorrents(data.torrents || []);
+    } catch (error) {
+      console.error('获取种子数据失败:', error);
+      setTorrents([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 在组件内，添加下载函数
+const handleDownload = async (infoHash, title) => {
+  try {
+    const response = await api.get(`/torrent/download/${infoHash}`, {
+      responseType: 'blob', // 重要：告诉 axios 以二进制流形式接收
+    });
+
+    // 用 Blob 创建下载链接
+    const blobUrl = window.URL.createObjectURL(new Blob([response.data]));
+
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.download = `${title}.torrent`;
+    document.body.appendChild(link);
+    link.click();
+
+    // 释放内存
+    link.remove();
+    window.URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    console.error('下载失败:', error);
+    alert('下载失败，请确认是否已登录或权限不足');
+  }
+};
+
+
 
   const formatSize = (bytes) => {
     if (bytes < 1024) return bytes + ' B';
@@ -67,27 +123,36 @@ const TorrentPage = () => {
     else return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
   };
 
-  const formatDate = (timestamp) => {
-    return new Date(timestamp).toLocaleString();
-  };
-
-  const filteredTorrents = torrents.filter(torrent =>
-    torrent.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    torrent.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  const formatDate = (timestamp) => new Date(timestamp).toLocaleString();
 
   return (
     <div className="torrent-container">
       <div className="torrent-header">
         <h2>种子搜索</h2>
-        <div className="search-box">
+        <div className="search-box" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <input
             type="text"
             placeholder="搜索种子..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            style={{ flex: '1' }}
           />
-          <button className="search-btn">搜索</button>
+         <select
+  multiple
+  value={selectedCategory}
+  onChange={(e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions).map(option => option.value);
+    setSelectedCategory(selectedOptions);
+  }}
+  style={{ minWidth: '120px' }}
+>
+
+            <option value="">全部类型</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.name}>{cat.name}</option>
+            ))}
+          </select>
+          <button className="search-btn" onClick={handleSearch}>搜索</button>
         </div>
       </div>
 
@@ -95,8 +160,8 @@ const TorrentPage = () => {
         <div className="loading">加载中...</div>
       ) : (
         <div className="torrent-list">
-          {filteredTorrents.length > 0 ? (
-            filteredTorrents.map(torrent => (
+          {torrents.length > 0 ? (
+            torrents.map((torrent) => (
               <div key={torrent.id} className="torrent-item">
                 <div className="torrent-info">
                   <h3>{torrent.title}</h3>
@@ -107,13 +172,18 @@ const TorrentPage = () => {
                     <span className="promo">{torrent.promotionPolicy.displayName}</span>
                   </div>
                   <div className="torrent-tags">
-                    {torrent.tags.map(tag => (
+                    {(torrent.tags || []).map((tag) => (
                       <span key={tag} className="tag">{tag}</span>
                     ))}
                   </div>
                 </div>
                 <div className="torrent-actions">
-                  <button className="download-btn">下载</button>
+                   <button
+        className="download-btn"
+        onClick={() => handleDownload(torrent.infoHash, torrent.title)}
+      >
+        下载
+      </button>
                 </div>
               </div>
             ))

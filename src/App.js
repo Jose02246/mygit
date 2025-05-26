@@ -6,7 +6,7 @@ import UserProfile from './Pages/UserProfile';
 import SeedPage from './Pages/SeedPage';
 import TorrentPage from './Pages/TorrentPage';
 import ForumPage from './Pages/ForumPage';
-import PointsShop from './Pages/PointsShop';
+import SalePage from './Pages/SalePage';
 import Sidebar from "./Pages/Sidebar";
 import './App.css';
 
@@ -91,7 +91,7 @@ function App() {
           <Route path="/seed" element={<RouteWrapper element={<SeedPage />} />} />
           <Route path="/torrent" element={<RouteWrapper element={<TorrentPage />} />} />
           <Route path="/forum" element={<RouteWrapper element={<ForumPage />} />} />
-          <Route path="/points-shop" element={<RouteWrapper element={<PointsShop />} />} />
+          <Route path="/SalePage" element={<RouteWrapper element={<SalePage />} />} />
         </Routes>
       </Router>
     </div>

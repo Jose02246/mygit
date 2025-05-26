@@ -1,10 +1,102 @@
-// Sidebar.js
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import "./Sidebar.css"; // 单独提取侧边栏样式
+import "./Sidebar.css";
+import api from './api';
 
-const Sidebar = ({ activeMenuItem, setActiveMenuItem, userData }) => {
+const Sidebar = ({ activeMenuItem, setActiveMenuItem, userData: initialUserData }) => {
   const navigate = useNavigate();
+  
+  // 状态管理
+  const [isEditing, setIsEditing] = useState(false);
+  const [tempUsername, setTempUsername] = useState('');
+  const [tempAvatar, setTempAvatar] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState(initialUserData || {
+    username: '',
+    avatar: '',
+  });
+
+  // 从后端接口获取用户数据
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await api.get('/auth/status');
+        const data = response.data;
+        const user = data.user.user;
+
+        console.log('获取到的数据:', data);
+        
+        // 确保 baseURL 已定义（根据你的实际配置）
+        const baseURL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8081/api';
+        
+        if (user.avatar && !user.avatar.startsWith('http')) {
+          user.avatar = baseURL + user.avatar;
+        }
+
+        setUserData(user); 
+      } catch (err) {
+        setError(err.message || '获取用户数据失败');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const handlePublishClick = () => {
+    navigate('/seed');
+  };
+
+  const handleEditProfile = () => {
+    if (!userData) return;
+    setIsEditing(true);
+    setTempUsername(userData.username);
+    setTempAvatar(userData.avatar);
+  };
+
+  const handleSaveProfile = () => {
+    setUserData(prev => ({
+      ...prev,
+      username: tempUsername,
+      avatar: tempAvatar,
+    }));
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+ 
+  const handleAvatarChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("请选择图片文件");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const baseURL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8081/api';
+      const response = await api.post('/users/avatar', formData);
+      const fullAvatarUrl = baseURL + response.data;
+      console.log("上传成功，头像 URL:", fullAvatarUrl);
+
+      alert("头像上传成功！");
+      setTempAvatar(fullAvatarUrl);
+    } catch (error) {
+      console.error("头像上传失败:", error);
+      alert("头像上传失败");
+    }
+  };
 
   const handleNavigation = (path, menuItem) => {
     navigate(path);
@@ -15,45 +107,52 @@ const Sidebar = ({ activeMenuItem, setActiveMenuItem, userData }) => {
     <div className="sidebar">
       <div className="user-basic-info">
         <div className="avatar-container">
-          <img src={userData.avatar} alt="用户头像" className="user-avatar" />
-          <div className="username">{userData.username}</div>
+          <img
+           src={isEditing ? tempAvatar || userData.avatar : userData.avatar} alt="用户头像" className="user-avatar" />
+            {isEditing ? (
+              <div className="avatar-edit-controls">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleAvatarChange}
+                  style={{ display: 'none' }}
+                  id="avatar-upload"
+                />
+                <label htmlFor="avatar-upload" className="edit-avatar-btn">
+                  更换头像
+                </label>
+              </div>
+            ) : (
+              <button className="edit-profile-btn" onClick={handleEditProfile}>
+                编辑资料
+              </button>
+            )}
+            
+            {isEditing ? (
+              <input
+                type="text"
+                value={tempUsername}
+                onChange={(e) => setTempUsername(e.target.value)}
+                className="username-edit-input"
+              />
+            ) : (
+              <div className="username">{userData.username}</div>
+            )}
 
-
-          <span className="user-class">
-            <span style={{
-            display: 'inline-block',
-            color: '#00FFFF',
-            fontSize: '12px',
-            fontWeight: 'bold',
-            textShadow: '0 0 4px #00FFFF, 0 0 8px #00FFFF',
-            padding: '2px 6px',
-            border: '1px solid rgba(0,255,255,0.3)',
-            borderRadius: '4px',
-            background: 'rgba(0,100,100,0.2)'
-        }}>
-        Nexus Master</span>
-         </span>
+          <div className="user-class">
+          <span>{userData.userClass || '普通'}</span></div>
 
         </div>
 
-        <div className="quick-stats">
-          <div className="stat-item">
-            <span className="stat-label">PIV</span>
-            <span className="stat-value">{userData.piv}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">活跃</span>
-            <span className="stat-value">{userData.activeDays}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">勋章</span>
-            <span className="stat-value">{userData.medals}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">在线</span>
-            <span className="stat-value">{userData.onlineHours}</span>
-          </div>
-        </div>
+
+
+        {isEditing && (
+            <div className="edit-controls">
+              <button className="save-btn" onClick={handleSaveProfile}>保存</button>
+              <button className="cancel-btn" onClick={handleCancelEdit}>取消</button>
+            </div>
+          )}
+        
       </div>
 
       <nav className="side-menu">
@@ -84,7 +183,7 @@ const Sidebar = ({ activeMenuItem, setActiveMenuItem, userData }) => {
         </button>
         <button
           className={`menu-item ${activeMenuItem === "shop" ? "active" : ""}`}
-          onClick={() => handleNavigation("/points-shop", "shop")}
+          onClick={() => handleNavigation("/SalePage", "shop")}
         >
           积分商城
         </button>

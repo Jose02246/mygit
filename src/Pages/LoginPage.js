@@ -22,6 +22,8 @@ const LoginPage = () => {
   // 登录处理函数
   const handleLogin = async (e) => {
     e.preventDefault();
+
+   
     try {
       const response = await fetch('http://192.168.10.117:8081/api/auth/login', {
         method: 'POST',

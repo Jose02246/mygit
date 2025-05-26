@@ -21,7 +21,7 @@
 
 
 .default-background {
-  background-image: url(C:\Users\ZhuanZ\Login\public\photos\bg2.jpg);
+  background-image: url(../public/photos/bg2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

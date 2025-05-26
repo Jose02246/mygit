@@ -1,139 +1,73 @@
+/* 容器整体样式 */
 .seed-container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 40px auto;
-    width: 100%;
-  min-height: 100vh;
   padding: 30px;
-  background-image: url(../../public/photos/bg-seed.jpg); 
-  background-size: cover;      
-  background-position: center; 
-  background-repeat: no-repeat; 
-  opacity: 0.9;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
+/* 标题样式 */
 .seed-container h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 24px;
+  color: #2c3e50;
 }
 
-.form-section {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+/* 表单分组 */
+.form-group {
+  margin-bottom: 20px;
 }
 
-.form-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 15px;
-  gap: 10px;
-}
-
-.form-header h3 {
-  margin: 0;
-  font-size: 16px;
+/* 标签文字 */
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
   color: #444;
-  min-width: 80px;
 }
 
-.hint-text {
-  color: #888;
-  font-size: 13px;
-  flex: 1;
-}
-
-.form-input {
+/* 下拉框和文件输入样式 */
+.form-group select,
+.form-group input[type="file"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s;
 }
 
-.description-input {
-  width: 100%;
-  height: 200px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  resize: vertical;
+.form-group select:focus,
+.form-group input[type="file"]:focus {
+  border-color: #4CAF50;
+  outline: none;
 }
 
+/* 按钮容器样式 */
 .form-actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  width: 100%;
-}
-
-.file-upload-btn {
-  padding: 8px 15px;
-  background-color: #3f51b5;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.file-upload-btn:hover {
-  background-color: #303f9f;
-}
-
-.file-status {
-  color: #000000;
-  font-size: 14px;
-}
-
-
-.upload-info {
-  color: #888;
-  font-size: 13px;
-  margin-left: auto;
-}
-
-
-.form-footer {
-  display: flex;
-  justify-content: flex-end;
+  text-align: center;
   margin-top: 30px;
 }
 
-.submit-btn {
-  padding: 10px 25px;
+/* 上传按钮样式 */
+.upload-btn {
   background-color: #4CAF50;
   color: white;
-  border: none;
-  border-radius: 4px;
+  padding: 12px 25px;
   font-size: 16px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.submit-btn:hover {
+.upload-btn:hover {
   background-color: #45a049;
-}
-
-@media (max-width: 768px) {
-  .seed-container {
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  .form-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .upload-info {
-    margin-left: 0;
-  }
 }
